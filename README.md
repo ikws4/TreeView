@@ -8,20 +8,20 @@ A general TreeView implementation for android base on RecyclerView.
 
 1. Add it in your root build.gradle at the end of repositories:
 
-```groovy
+```gradle
 allprojects {
   repositories {
     ...
-    maven { url 'https://jitpack.io' }
+    maven { url "https://jitpack.io" }
   }
 }
 ```
 
 2. Add the dependency
 
-```
+```gradle
 dependencies {
-  implementation 'com.github.ikws4:TreeView:0.1'
+  implementation "com.github.ikws4:TreeView:0.1"
 }
 ```
 
