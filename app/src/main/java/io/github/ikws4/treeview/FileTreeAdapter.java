@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import java.io.File;
 import java.util.Collections;
 
-class FileTreeAdapter extends TreeViewAdapter<FileTreeAdapter.ViewHolder, String> implements TreeViewAdapter.OnTreeItemClickListener<String> {
+class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, String> implements TreeView.Adapter.OnTreeItemClickListener<String> {
 
   public FileTreeAdapter() {
     setTreeItemClickListener(this);
@@ -57,7 +57,7 @@ class FileTreeAdapter extends TreeViewAdapter<FileTreeAdapter.ViewHolder, String
     }
   }
 
-  static class ViewHolder extends TreeViewAdapter.ViewHolder {
+  static class ViewHolder extends TreeView.ViewHolder {
     ImageView icon;
     TextView name;
 
