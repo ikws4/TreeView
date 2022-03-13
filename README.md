@@ -6,14 +6,11 @@ A general TreeView implementation for android base on RecyclerView.
 
 ## FileTree
 
-
 https://user-images.githubusercontent.com/47056144/158051176-6f45652c-5262-407a-a0ca-6c8c30c0f892.mp4
-
-
 
 ## TaskTree
 
-<img src="./assets/task_tree.png" height="400">
+<img src="./assets/task_tree.png" width="320">
 
 # Usage
 
@@ -49,7 +46,7 @@ class TaskTreeAdapter extends TreeView.Adapter<TaskTreeAdapter.ViewHolder, Strin
 }
 ```
 
-in your `item_tasktree.xml`
+`item_tasktree.xml`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -68,7 +65,7 @@ in your `item_tasktree.xml`
 </LinearLayout>
 ```
 
-in `activity_main.xml`
+`activity_main.xml`
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
