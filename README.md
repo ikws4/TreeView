@@ -21,7 +21,7 @@ allprojects {
 
 ```
 dependencies {
-  implementation 'com.github.ikws4:TreeView:Tag'
+  implementation 'com.github.ikws4:TreeView:0.1'
 }
 ```
 
