@@ -2,17 +2,40 @@
 
 A general TreeView implementation for android base on RecyclerView.
 
+# Setup
+
+[![](https://jitpack.io/v/ikws4/TreeView.svg)](https://jitpack.io/#ikws4/TreeView)
+
+1. Add it in your root build.gradle at the end of repositories:
+
+```groovy
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
+
+2. Add the dependency
+
+```
+dependencies {
+  implementation 'com.github.ikws4:TreeView:Tag'
+}
+```
+
 # Demo
 
 ## FileTree
+
+You can check out [FileTreeAdapter](https://github.com/ikws4/TreeView/blob/main/app/src/main/java/io/github/ikws4/treeview/FileTreeAdapter.java) if you want to learn more.
 
 https://user-images.githubusercontent.com/47056144/158051176-6f45652c-5262-407a-a0ca-6c8c30c0f892.mp4
 
 ## TaskTree
 
 <img src="./assets/task_tree.png" width="320">
-
-# Usage
 
 Create a custom adapter by extends `TreeView.Adapter`.
 
