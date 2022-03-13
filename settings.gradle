@@ -1,0 +1,3 @@
+include ':treeview'
+include ':app'
+rootProject.name = "TreeView"
