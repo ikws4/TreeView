@@ -136,7 +136,7 @@ This library was inspired by [RecyclerTreeView](https://github.com/TellH/Recycle
 ```
 MIT License
 
-Copyright (c) 2022 Devin
+Copyright (c) 2022 ikws4
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
