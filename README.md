@@ -129,7 +129,7 @@ adapter.setRoot(root);
 
 # Thanks
 
-`TreeView` was inspirted by [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView)
+This library was inspired by [RecyclerTreeView](https://github.com/TellH/RecyclerTreeView)
 
 # License
 
