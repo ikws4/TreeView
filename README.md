@@ -6,9 +6,10 @@ A general TreeView implementation for android base on RecyclerView.
 
 ## FileTree
 
-<video width="400" controls>
-  <source src="./assets/demo.mp4" type="video/mp4">
-</video>
+
+https://user-images.githubusercontent.com/47056144/158051176-6f45652c-5262-407a-a0ca-6c8c30c0f892.mp4
+
+
 
 ## TaskTree
 
