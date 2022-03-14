@@ -121,6 +121,7 @@ daily.getChildren().add(new TreeItem<>("Drink at least 4 cups of water"));
 weekly.getChildren().add(new TreeItem<>("Week review"));
 weekly.getChildren().add(new TreeItem<>("Reward your self"));
 
+root.setExpanded(true);
 root.getChildren().add(daily);
 root.getChildren().add(weekly);
 
