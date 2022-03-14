@@ -69,7 +69,7 @@ public class TreeView extends RecyclerView {
       View itemView = holder.itemView;
       ImageView leadingIcon = holder.leadingIcon;
 
-      itemView.setPadding(indentationWidth * calculateDepth(item), 0, 0, 0);
+      itemView.setPadding(computeIndentPadding(item), 0, 0, 0);
 
       if (item.isExpandable()) {
 
@@ -81,7 +81,7 @@ public class TreeView extends RecyclerView {
 
         leadingIcon.setVisibility(View.VISIBLE);
       } else {
-        leadingIcon.setVisibility(View.GONE);
+        leadingIcon.setVisibility(View.INVISIBLE);
       }
 
       itemView.setOnClickListener((v) -> {
@@ -117,18 +117,12 @@ public class TreeView extends RecyclerView {
       });
     }
 
-    private int calculateDepth(TreeItem<T> item) {
-      int depth = item.getDepth();
-      if (hasExpandableChild(item.parent) && item.isExpandable()) depth--;
-      return depth;
-    }
+    private int computeIndentPadding(TreeItem<T> item) {
+      int padding = indentationWidth * item.getDepth();
 
+      if (!showRoot) padding -= indentationWidth;
 
-    private boolean hasExpandableChild(TreeItem<T> root) {
-      for (TreeItem<T> child : root.getChildren()) {
-        if (child.isExpandable()) return true;
-      }
-      return false;
+      return padding;
     }
 
     private int removeAllExpandedItemRecursive(TreeItem<T> root, int index) {

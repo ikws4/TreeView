@@ -53,6 +53,7 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
   @Override
   public boolean add(TreeItem<T> item) {
     item.parent = parent;
+    item.depth = item.parent.depth + 1;
     return list.add(item);
   }
 
@@ -70,6 +71,7 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
   public boolean addAll(@NonNull Collection<? extends TreeItem<T>> c) {
     for (TreeItem<T> item : c) {
       item.parent = parent;
+      item.depth = parent.depth + 1;
     }
     return list.addAll(c);
   }
@@ -78,6 +80,7 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
   public boolean addAll(int index, @NonNull Collection<? extends TreeItem<T>> c) {
     for (TreeItem<T> item : c) {
       item.parent = parent;
+      item.depth = parent.depth + 1;
     }
     return list.addAll(index, c);
   }
@@ -105,12 +108,14 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
   @Override
   public TreeItem<T> set(int index, TreeItem<T> element) {
     element.parent = parent;
+    element.depth = parent.depth + 1;
     return list.set(index, element);
   }
 
   @Override
   public void add(int index, TreeItem<T> element) {
     element.parent = parent;
+    element.depth = parent.depth;
     list.add(index, element);
   }
 
