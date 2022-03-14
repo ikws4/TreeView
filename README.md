@@ -111,7 +111,7 @@ TreeView treeView = findViewById(R.id.tree_view);
 TaskTreeAdapter adapter = new TaskTreeAdapter();
 treeView.setAdapter(adapter);
 
-TreeItem<String> root = new TreeItem<>("Tasks");
+TreeItem<String> root = new TreeItem<>("Tasks", true);
 TreeItem<String> daily = new TreeItem<>("Daily", true);
 TreeItem<String> weekly = new TreeItem<>("Weekly", true);
 
