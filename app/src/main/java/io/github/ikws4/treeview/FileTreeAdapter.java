@@ -17,6 +17,8 @@ class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, Strin
     setTreeItemClickListener(this);
     File rootFile = Environment.getExternalStorageDirectory();
     TreeItem<String> root = new TreeItem<>(rootFile.getPath(), true);
+    root.setExpanded(true);
+    expand(root);
     setRoot(root);
   }
 
@@ -42,12 +44,6 @@ class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, Strin
     }
 
     holder.name.setText(item.getValue());
-  }
-
-  @Override
-  public void setRoot(TreeItem<String> root) {
-    expand(root);
-    super.setRoot(root);
   }
 
   @Override
