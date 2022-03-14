@@ -45,6 +45,7 @@ public class TreeView extends RecyclerView {
   }
 
   public abstract static class Adapter<VH extends ViewHolder, T> extends RecyclerView.Adapter<VH> {
+    private static final int ANIM_TIME = 200;
     private int indentationWidth;
     public Adapter.OnTreeItemClickListener<T> listener;
     protected List<TreeItem<T>> items = new ArrayList<>();
@@ -71,11 +72,13 @@ public class TreeView extends RecyclerView {
       itemView.setPadding(indentationWidth * calculateDepth(item), 0, 0, 0);
 
       if (item.isExpandable()) {
+
         if (item.isExpanded()) {
           leadingIcon.setRotation(90);
         } else {
           leadingIcon.setRotation(0);
         }
+
         leadingIcon.setVisibility(View.VISIBLE);
       } else {
         leadingIcon.setVisibility(View.GONE);
@@ -88,7 +91,7 @@ public class TreeView extends RecyclerView {
 
         // click with debound
         long lastClickTime = (long) itemView.getTag();
-        if (System.currentTimeMillis() - lastClickTime < 250) {
+        if (System.currentTimeMillis() - lastClickTime < ANIM_TIME) {
           return;
         }
         itemView.setTag(System.currentTimeMillis());
@@ -105,7 +108,7 @@ public class TreeView extends RecyclerView {
           }
 
           leadingIcon.animate()
-              .setDuration(250)
+              .setDuration(ANIM_TIME)
               .rotationBy(item.isExpanded() ? -90 : 90)
               .start();
 
