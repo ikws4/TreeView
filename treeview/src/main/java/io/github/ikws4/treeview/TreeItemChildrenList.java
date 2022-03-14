@@ -68,6 +68,9 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
 
   @Override
   public boolean addAll(@NonNull Collection<? extends TreeItem<T>> c) {
+    for (TreeItem<T> item : c) {
+      item.parent = parent;
+    }
     return list.addAll(c);
   }
 
