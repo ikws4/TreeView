@@ -49,6 +49,8 @@ public class TreeView extends RecyclerView {
     private int indentationWidth;
     public Adapter.OnTreeItemClickListener<T> listener;
     protected List<TreeItem<T>> items = new ArrayList<>();
+    private TreeItem<T> root;
+    private boolean showRoot = true;
 
     public abstract VH onCreateViewHolder(View view);
 
@@ -154,8 +156,30 @@ public class TreeView extends RecyclerView {
       return items.size();
     }
 
+    void loadItems() {
+      if (root == null) return;
+
+      items.clear();
+
+      if (showRoot) {
+        items.add(root);
+      }
+
+      if (root.isExpanded()) {
+        items.addAll(root.getChildren());
+      }
+
+      notifyDataSetChanged();
+    }
+
     public void setRoot(TreeItem<T> root) {
-      items.addAll(root.getChildren());
+      this.root = root;
+      loadItems();
+    }
+
+    public void setShowRoot(boolean show) {
+      this.showRoot = show;
+      loadItems();
     }
 
     public void setTreeItemClickListener(Adapter.OnTreeItemClickListener<T> listener) {
