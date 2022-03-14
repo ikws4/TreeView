@@ -11,7 +11,6 @@ public class TreeItem<T> {
   private boolean expanded;
   private final boolean expandable;
   TreeItem<T> parent;
-  int depth;
 
   public TreeItem(@NonNull T value) {
     this(value, false);
@@ -50,6 +49,7 @@ public class TreeItem<T> {
   }
 
   int getDepth() {
-    return depth;
+    if (parent == null) return 0;
+    return parent.getDepth() + 1;
   }
 }
