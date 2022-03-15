@@ -21,7 +21,7 @@ allprojects {
 
 ```gradle
 dependencies {
-  implementation "com.github.ikws4:TreeView:0.1"
+  implementation "com.github.ikws4:TreeView:0.1.1"
 }
 ```
 
