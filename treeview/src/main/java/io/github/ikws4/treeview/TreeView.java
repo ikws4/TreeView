@@ -90,7 +90,7 @@ public class TreeView extends RecyclerView {
           listener.onClick(item);
         }
 
-        // click with debound
+        // click with debounce
         long lastClickTime = (long) itemView.getTag();
         if (System.currentTimeMillis() - lastClickTime < ANIM_TIME) {
           return;
