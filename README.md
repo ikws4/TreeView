@@ -125,7 +125,7 @@ root.setExpanded(true);
 root.getChildren().add(daily);
 root.getChildren().add(weekly);
 
-adapter.setRoot(root);
+adapter.setRoot(root, true);
 ```
 
 # Thanks
