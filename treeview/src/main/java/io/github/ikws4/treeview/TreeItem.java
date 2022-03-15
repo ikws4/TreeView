@@ -26,7 +26,11 @@ public class TreeItem<T> {
     return expanded;
   }
 
+  /**
+   * @throws IllegalStateException if item is not expandable
+   */
   public void setExpanded(boolean expanded) {
+    ensureSelfIsExpandable();
     this.expanded = expanded;
   }
 
@@ -51,5 +55,19 @@ public class TreeItem<T> {
   int getDepth() {
     if (parent == null) return 0;
     return parent.getDepth() + 1;
+  }
+
+  @Override
+  public String toString() {
+    return "TreeItem(" +
+        "value=" + value +
+        ", expanded=" + expanded +
+        ')';
+  }
+
+  private void ensureSelfIsExpandable() {
+    if (!expandable) {
+      throw new IllegalStateException(this.toString() + " is not expandable.");
+    }
   }
 }

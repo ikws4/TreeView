@@ -50,10 +50,15 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
     throw new UnsupportedOperationException();
   }
 
+  /**
+   * @throws IllegalStateException if parent is not a expandable item
+   */
   @Override
-  public boolean add(TreeItem<T> item) {
-    item.parent = parent;
-    return list.add(item);
+  public boolean add(TreeItem<T> ele) {
+    ensureParentIsExpandable();
+
+    ele.parent = parent;
+    return list.add(ele);
   }
 
   @Override
@@ -66,19 +71,31 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
     return list.containsAll(c);
   }
 
+  /**
+   * @throws IllegalStateException if item is not expandable
+   */
   @Override
   public boolean addAll(@NonNull Collection<? extends TreeItem<T>> c) {
-    for (TreeItem<T> item : c) {
-      item.parent = parent;
+    ensureParentIsExpandable();
+
+    for (TreeItem<T> ele : c) {
+      ele.parent = parent;
     }
+
     return list.addAll(c);
   }
 
+  /**
+   * @throws IllegalStateException if item is not expandable
+   */
   @Override
   public boolean addAll(int index, @NonNull Collection<? extends TreeItem<T>> c) {
-    for (TreeItem<T> item : c) {
-      item.parent = parent;
+    ensureParentIsExpandable();
+
+    for (TreeItem<T> ele : c) {
+      ele.parent = parent;
     }
+
     return list.addAll(index, c);
   }
 
@@ -102,16 +119,26 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
     return list.get(index);
   }
 
+  /**
+   * @throws IllegalStateException if item is not expandable
+   */
   @Override
-  public TreeItem<T> set(int index, TreeItem<T> element) {
-    element.parent = parent;
-    return list.set(index, element);
+  public TreeItem<T> set(int index, TreeItem<T> ele) {
+    ensureParentIsExpandable();
+
+    ele.parent = parent;
+    return list.set(index, ele);
   }
 
+  /**
+   * @throws IllegalStateException if item is not expandable
+   */
   @Override
-  public void add(int index, TreeItem<T> element) {
-    element.parent = parent;
-    list.add(index, element);
+  public void add(int index, TreeItem<T> ele) {
+    ensureParentIsExpandable();
+
+    ele.parent = parent;
+    list.add(index, ele);
   }
 
   @Override
@@ -145,5 +172,11 @@ class TreeItemChildrenList<T> implements List<TreeItem<T>>{
   @Override
   public List<TreeItem<T>> subList(int fromIndex, int toIndex) {
     return list.subList(fromIndex, toIndex);
+  }
+
+  private void ensureParentIsExpandable() {
+    if (!parent.isExpandable()) {
+      throw new IllegalStateException(parent.toString() + " is not expandable.");
+    }
   }
 }
