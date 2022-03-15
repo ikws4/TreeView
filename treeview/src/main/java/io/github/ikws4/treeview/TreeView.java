@@ -49,6 +49,7 @@ public class TreeView extends RecyclerView {
     private int indentationWidth;
     public Adapter.OnTreeItemClickListener<T> listener;
     protected List<TreeItem<T>> items = new ArrayList<>();
+    private boolean showRoot = false;
 
     public abstract VH onCreateViewHolder(View view);
 
@@ -118,11 +119,9 @@ public class TreeView extends RecyclerView {
     }
 
     private int computeIndentPadding(TreeItem<T> item) {
-      int padding = indentationWidth * item.getDepth();
-
-      if (!showRoot) padding -= indentationWidth;
-
-      return padding;
+      int depth = item.getDepth();
+      if (!showRoot) depth--;
+      return indentationWidth * depth;
     }
 
     private int removeAllExpandedItemRecursive(TreeItem<T> root, int index) {
@@ -155,7 +154,25 @@ public class TreeView extends RecyclerView {
     }
 
     public void setRoot(TreeItem<T> root) {
-      items.addAll(root.getChildren());
+      setRoot(root, false);
+    }
+
+    public void setRoot(TreeItem<T> root, boolean showRoot) {
+      items.clear();
+
+      if (showRoot) {
+        items.add(root);
+
+        if (root.isExpanded()) {
+          items.addAll(root.getChildren());
+        }
+      } else {
+        items.addAll(root.getChildren());
+      }
+
+      notifyDataSetChanged();
+
+      this.showRoot = showRoot;
     }
 
     public void setTreeItemClickListener(Adapter.OnTreeItemClickListener<T> listener) {
