@@ -1,4 +1,4 @@
-package io.github.ikws4.treeview;
+package io.github.ikws4.treeview.file;
 
 
 import android.os.Environment;
@@ -10,6 +10,10 @@ import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.util.Collections;
+
+import io.github.ikws4.treeview.R;
+import io.github.ikws4.treeview.TreeItem;
+import io.github.ikws4.treeview.TreeView;
 
 class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, String> implements TreeView.Adapter.OnTreeItemClickListener<String> {
 

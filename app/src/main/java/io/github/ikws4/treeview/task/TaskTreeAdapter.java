@@ -1,9 +1,12 @@
-package io.github.ikws4.treeview;
+package io.github.ikws4.treeview.task;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import io.github.ikws4.treeview.R;
+import io.github.ikws4.treeview.TreeView;
 
 class TaskTreeAdapter extends TreeView.Adapter<TaskTreeAdapter.ViewHolder, String> {
 

@@ -29,7 +29,7 @@ dependencies {
 
 ## FileTree
 
-Check out [FileTreeAdapter](https://github.com/ikws4/TreeView/blob/main/app/src/main/java/io/github/ikws4/treeview/FileTreeAdapter.java) if you want to learn more.
+Check out [FileTreeAdapter](https://github.com/ikws4/TreeView/blob/main/app/src/main/java/io/github/ikws4/treeview/file/FileTreeAdapter.java) if you want to learn more.
 
 https://user-images.githubusercontent.com/47056144/158051176-6f45652c-5262-407a-a0ca-6c8c30c0f892.mp4
 
