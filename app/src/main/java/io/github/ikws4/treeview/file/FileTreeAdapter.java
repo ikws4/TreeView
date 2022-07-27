@@ -55,6 +55,11 @@ class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, Strin
       expand(item);
     }
   }
+  
+  @Override
+  public void onLongClick(TreeItem<String> item) {
+        
+  }
 
   static class ViewHolder extends TreeView.ViewHolder {
     ImageView icon;
