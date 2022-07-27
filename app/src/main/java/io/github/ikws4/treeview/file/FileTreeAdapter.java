@@ -15,10 +15,11 @@ import io.github.ikws4.treeview.R;
 import io.github.ikws4.treeview.TreeItem;
 import io.github.ikws4.treeview.TreeView;
 
-class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, String> implements TreeView.Adapter.OnTreeItemClickListener<String> {
+class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, String> implements TreeView.Adapter.OnTreeItemClickListener<String>,TreeView.Adapter.OnTreeItemLongClickListener<String> {
 
   public FileTreeAdapter() {
     setTreeItemClickListener(this);
+    setTreeItemLongClickListener(this);
     File rootFile = Environment.getExternalStorageDirectory();
     TreeItem<String> root = new TreeItem<>(rootFile.getPath(), true);
     expand(root);
@@ -54,6 +55,11 @@ class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, Strin
     if (item.isExpandable() && !item.isExpanded()) {
       expand(item);
     }
+  }
+  
+  @Override
+  public void onLongClick(TreeItem<String> item) {
+        
   }
 
   static class ViewHolder extends TreeView.ViewHolder {

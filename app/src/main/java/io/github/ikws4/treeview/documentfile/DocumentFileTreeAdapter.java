@@ -13,10 +13,11 @@ import io.github.ikws4.treeview.R;
 import io.github.ikws4.treeview.TreeItem;
 import io.github.ikws4.treeview.TreeView;
 
-class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.ViewHolder, DocumentFile> implements TreeView.Adapter.OnTreeItemClickListener<DocumentFile> {
+class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.ViewHolder, DocumentFile> implements TreeView.Adapter.OnTreeItemClickListener<DocumentFile>,TreeView.Adapter.OnTreeItemLongClickListener<DocumentFile> {
 
     public DocumentFileTreeAdapter(DocumentFile rootFile) {
         setTreeItemClickListener(this);
+        setTreeItemLongClickListener(this);
         TreeItem<DocumentFile> root = new TreeItem<>(rootFile, true);
         expand(root);
         setRoot(root);
@@ -51,6 +52,11 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
         if (item.isExpandable() && !item.isExpanded()) {
             expand(item);
         }
+    }
+    
+    @Override
+    public void onLongClick(TreeItem<DocumentFile> item) {
+        
     }
 
     static class ViewHolder extends TreeView.ViewHolder {
