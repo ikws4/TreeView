@@ -120,6 +120,7 @@ public class TreeView extends RecyclerView {
         if (listener != null) {
           listener.onLongClick(item);
         }
+        return true;
       });
     }
 
