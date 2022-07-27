@@ -48,6 +48,7 @@ public class TreeView extends RecyclerView {
     private static final int ANIM_TIME = 200;
     private int indentationWidth;
     public Adapter.OnTreeItemClickListener<T> listener;
+    public Adapter.OnTreeItemLongClickListener<T> longlistener;
     protected List<TreeItem<T>> items = new ArrayList<>();
     private boolean showRoot = false;
 
@@ -117,8 +118,8 @@ public class TreeView extends RecyclerView {
         }
       });
       itemView.setOnLongClickListener((v) -> {
-        if (listener != null) {
-          listener.onLongClick(item);
+        if (longlistener != null) {
+          longlistener.onLongClick(item);
         }
         return true;
       });
@@ -184,6 +185,10 @@ public class TreeView extends RecyclerView {
     public void setTreeItemClickListener(Adapter.OnTreeItemClickListener<T> listener) {
       this.listener = listener;
     }
+    
+    public void setTreeItemClickListener(Adapter.OnTreeItemLongClickListener<T> listener) {
+      this.longlistener = listener;
+    }
 
     void setIdentationWidth(int width) {
       this.indentationWidth = width;
@@ -191,8 +196,12 @@ public class TreeView extends RecyclerView {
 
     public interface OnTreeItemClickListener<T> {
       void onClick(TreeItem<T> item);
+    }
+    
+    public interface OnTreeItemLongClickListener<T> {
       void onLongClick(TreeItem<T> item);
     }
+    
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
