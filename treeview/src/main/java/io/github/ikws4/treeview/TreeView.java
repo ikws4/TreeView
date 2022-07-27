@@ -116,6 +116,11 @@ public class TreeView extends RecyclerView {
           item.setExpanded(!item.isExpanded());
         }
       });
+      itemView.setOnLongClickListener((v) -> {
+        if (listener != null) {
+          listener.onLongClick(item);
+        }
+      });
     }
 
     private int computeIndentPadding(TreeItem<T> item) {
@@ -185,6 +190,7 @@ public class TreeView extends RecyclerView {
 
     public interface OnTreeItemClickListener<T> {
       void onClick(TreeItem<T> item);
+      void onLongClick(TreeItem<T> item);
     }
   }
 
