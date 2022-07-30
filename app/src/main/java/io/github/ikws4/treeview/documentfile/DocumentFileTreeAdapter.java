@@ -5,19 +5,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.documentfile.provider.DocumentFile;
+
+import com.lazygeniouz.filecompat.file.DocumentFileCompat;
 
 import java.util.Collections;
+import java.util.List;
 
 import io.github.ikws4.treeview.R;
 import io.github.ikws4.treeview.TreeItem;
 import io.github.ikws4.treeview.TreeView;
 
-class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.ViewHolder, DocumentFile> implements TreeView.Adapter.OnTreeItemClickListener<DocumentFile> {
+class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.ViewHolder, DocumentFileCompat> implements TreeView.Adapter.OnTreeItemClickListener<DocumentFileCompat> {
 
-    public DocumentFileTreeAdapter(DocumentFile rootFile) {
+    public DocumentFileTreeAdapter(DocumentFileCompat rootFile) {
         setTreeItemClickListener(this);
-        TreeItem<DocumentFile> root = new TreeItem<>(rootFile, true);
+        TreeItem<DocumentFileCompat> root = new TreeItem<>(rootFile, true);
         expand(root);
         setRoot(root);
     }
@@ -36,7 +38,7 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
 
-        TreeItem<DocumentFile> item = items.get(position);
+        TreeItem<DocumentFileCompat> item = items.get(position);
         if (item.isExpandable()) {
             holder.icon.setImageResource(R.drawable.ic_folder);
         } else {
@@ -47,7 +49,7 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
     }
 
     @Override
-    public void onClick(TreeItem<DocumentFile> item) {
+    public void onClick(TreeItem<DocumentFileCompat> item) {
         if (item.isExpandable() && !item.isExpanded()) {
             expand(item);
         }
@@ -64,13 +66,14 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
         }
     }
 
-    private void expand(TreeItem<DocumentFile> root) {
+    private void expand(TreeItem<DocumentFileCompat> root) {
         if (!root.getChildren().isEmpty()) return;
 
-        for (DocumentFile child : getChildren(root)) {
-            TreeItem<DocumentFile> item = new TreeItem<>(child, child.isDirectory());
+        for (DocumentFileCompat child : getChildren(root)) {
+            TreeItem<DocumentFileCompat> item = new TreeItem<>(child, child.isDirectory());
             root.getChildren().add(item);
         }
+
         Collections.sort(root.getChildren(), (a, b) -> {
             if (a.isExpandable() && b.isExpandable()) {
                 return a.getValue().getName().compareTo(b.getValue().getName());
@@ -82,7 +85,7 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
         });
     }
 
-    private DocumentFile[] getChildren(TreeItem<DocumentFile> file) {
+    private List<DocumentFileCompat> getChildren(TreeItem<DocumentFileCompat> file) {
         return file.getValue().listFiles();
     }
 }

@@ -34,7 +34,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     implementation project(path: ":treeview")
-
+    implementation "com.lazygeniouz:documentfile_compat:0.8"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
