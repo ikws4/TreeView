@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.documentfile.provider.DocumentFile;
 
 import com.lazygeniouz.filecompat.file.DocumentFileCompat;
 
@@ -70,18 +71,14 @@ class DocumentFileTreeAdapter extends TreeView.Adapter<DocumentFileTreeAdapter.V
         if (!root.getChildren().isEmpty()) return;
 
         for (DocumentFileCompat child : getChildren(root)) {
-            TreeItem<DocumentFileCompat> item = new TreeItem<>(child, child.isDirectory());
+            TreeItem<DocumentFileCompat> item = new TreeItem<>(child, !child.isFile());
             root.getChildren().add(item);
         }
 
         Collections.sort(root.getChildren(), (a, b) -> {
-            if (a.isExpandable() && b.isExpandable()) {
-                return a.getValue().getName().compareTo(b.getValue().getName());
-            } else if (b.isExpandable()) {
-                return 1;
-            } else {
-                return -1;
-            }
+            int res = Boolean.compare(b.isExpandable(), a.isExpandable());
+            if (res == 0) return a.getValue().getName().compareToIgnoreCase(b.getValue().getName());
+            return res;
         });
     }
 

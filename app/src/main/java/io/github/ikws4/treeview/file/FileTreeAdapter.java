@@ -75,13 +75,9 @@ class FileTreeAdapter extends TreeView.Adapter<FileTreeAdapter.ViewHolder, Strin
       root.getChildren().add(item);
     }
     Collections.sort(root.getChildren(), (a, b) -> {
-      if (a.isExpandable() && b.isExpandable()) {
-        return a.getValue().compareTo(b.getValue());
-      } else if (b.isExpandable()) {
-        return 1;
-      } else {
-        return -1;
-      }
+      int res = Boolean.compare(b.isExpandable(), a.isExpandable());
+      if (res == 0) return a.getValue().compareToIgnoreCase(b.getValue());
+      return res;
     });
   }
 
